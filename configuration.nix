@@ -7,7 +7,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.luks.devices."luks-uuid".device = "/dev/disk/by-uuid/uuid"; # Replace uuid with disk uuid after running lsblk
+  boot.initrd.luks.devices."luks-uuid".device = "/dev/disk/by-uuid/uuid"; # Replace uuid with disk uuid after running blkid
   boot.plymouth.enable = true;
   boot.plymouth.theme = "bgrt";
   boot.initrd.verbose = false;
