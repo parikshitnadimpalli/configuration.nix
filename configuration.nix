@@ -14,7 +14,6 @@
     initrd.verbose = false;
     consoleLogLevel = 0;
     # Run "btrfs inspect-internal map-swapfile -r /swap/swapfile" and replace 533760
-    # After that rebuild and then run "sudo swapon /swap/swapfile"
     kernelParams = [ "quiet" "udev.log_level=0" "resume_offset=533760" ];
     resumeDevice = "/dev/mapper/crypted";
   };
