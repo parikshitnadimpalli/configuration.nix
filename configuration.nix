@@ -17,6 +17,11 @@
 
   swapDevices = [ { device = "/.swapvol/swapfile"; priority = 0; randomEncryption.enable = false; } ];
 
+  systemd.sleep.extraConfig = ''
+  AllowHibernation=yes
+  HibernateMode=shutdown
+  '';
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
