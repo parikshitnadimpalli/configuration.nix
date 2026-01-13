@@ -1,19 +1,20 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports =
+    [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.luks.devices."luks-uuid".device = "dev/disk/by-uuid/uuid"; # Replace uuid with disk uuid by running lsblk
+  boot.initrd.luks.devices."luks-uuid".device = "/dev/disk/by-uuid/uuid"; # Replace uuid with disk uuid after running lsblk
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Kolkata";
 
-  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
@@ -24,17 +25,17 @@
     LC_PAPER = "en_IN";
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
-  }
+  };
 
-  servicer.xserver.xkb = {
+  services.xserver.xkb = {
     layout = "us";
     variant = "";
-  }
+  };
 
   users.users.parikshit = {
     isNormalUser = true;
     description = "parikshit";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
 
@@ -48,4 +49,5 @@
   ];
 
   system.stateVersion = "25.11";
+
 }
