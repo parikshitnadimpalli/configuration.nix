@@ -19,6 +19,8 @@
     resumeDevice = "/dev/mapper/crypted";
   };
 
+  swapDevices = [ { device = "/swap/swapfile"; priority = 0; } ];
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
