@@ -8,6 +8,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.luks.devices."luks-uuid".device = "/dev/disk/by-uuid/uuid"; # Replace uuid with disk uuid after running lsblk
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "bgrt";
+  boot.initrd.verbose = false;
+  boot.consoleLogLevel = 0;
+  boot.kernelParams = [ "quiet" "udev.log_level=0" ]; 
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
