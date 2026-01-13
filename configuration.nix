@@ -4,16 +4,21 @@
   imports =
     [ ./hardware-configuration.nix ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.plymouth.enable = true;
-  boot.plymouth.theme = "bgrt";
-  boot.initrd.systemd.enable = true;
-  boot.initrd.verbose = false;
-  boot.consoleLogLevel = 0;
-  boot.kernelParams = [ "quiet" "udev.log_level=0" ];
-  
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernelPackages = pkgs.linuxPackages_latest;
+    plymouth.enable = true;
+    plymouth.theme = "bgrt";
+    initrd.systemd.enable = true;
+    initrd.verbose = false;
+    consoleLogLevel = 0;
+    # Run "btrfs inspect-internal map-swapfile -r /swap/swapfile" and replace 533760
+    # After that rebuild and then run "sudo swapon /swap/swapfile"
+    kernelParams = [ "quiet" "udev.log_level=0" "resume_offset=533760" ];
+    resumeDevice = "/dev/mapper/crypted";
+  };
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
