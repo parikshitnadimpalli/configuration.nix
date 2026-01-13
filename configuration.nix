@@ -40,7 +40,7 @@
   users.users.parikshit = {
     isNormalUser = true;
     description = "parikshit";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     packages = with pkgs; [];
   };
 
