@@ -1,14 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.luks.devices."luks-uuid".device = "dev/disk/by-uuid/uuid"; # Replace uuid with disk uuid by running lsblk
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -35,6 +33,7 @@
 
   users.users.parikshit = {
     isNormalUser = true;
+    description = "parikshit";
     extraGroups = [ "wheel" "networkmanager" ];
     packages = with pkgs; [];
   };
