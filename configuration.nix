@@ -13,15 +13,7 @@
   boot.initrd.verbose = false;
   boot.consoleLogLevel = 0;
   boot.kernelParams = [ "quiet" "udev.log_level=0" ];
-  boot.resumeDevice = "/dev/mapper/crypted";
-
-  swapDevices = [ { device = "/.swapvol/swapfile"; priority = 0; randomEncryption.enable = false; } ];
-
-  systemd.sleep.extraConfig = ''
-  AllowHibernation=yes
-  HibernateMode=shutdown
-  '';
-
+  
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
