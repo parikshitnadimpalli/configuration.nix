@@ -9,6 +9,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.plymouth.enable = true;
   boot.plymouth.theme = "bgrt";
+  boot.initrd.systemd.enable = true;
   boot.initrd.verbose = false;
   boot.consoleLogLevel = 0;
   boot.kernelParams = [ "quiet" "udev.log_level=0" ]; 
