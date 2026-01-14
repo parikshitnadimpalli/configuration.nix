@@ -19,6 +19,7 @@
   };
 
   swapDevices = [ { device = "/swap/swapfile"; priority = 0; } ];
+  systemd.sleep.extraConfig = "HibernateDelaySec=30m";
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
