@@ -21,6 +21,12 @@
   swapDevices = [ { device = "/swap/swapfile"; priority = 0; } ];
   systemd.sleep.extraConfig = "HibernateDelaySec=30m";
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
